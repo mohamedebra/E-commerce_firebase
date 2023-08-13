@@ -75,7 +75,7 @@ Widget jacketView() {
       return StreamBuilder<QuerySnapshot>(
         stream: cubit.loadProducts(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {git init
+          if (snapshot.hasData) {
             List<Product> products = [];
             for (var doc in snapshot.data!.docs) {
               var data = doc.get;
