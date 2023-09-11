@@ -11,7 +11,7 @@ class AdminHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.myYellow,
+      backgroundColor: Colors.blue[100],
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -20,21 +20,21 @@ class AdminHome extends StatelessWidget {
             width: double.infinity,
           ),
           MaterialButton(
-            color: MyColors.myWhite,
+            color:Colors.white60,
             onPressed: () {
               Navigator.pushNamed(context, AddProduct.id);
             },
             child: Text('Add Product'),
           ),
           MaterialButton(
-            color: MyColors.myWhite,
+            color: Colors.white60,
             onPressed: () {
               Navigator.pushNamed(context, ManageProduct.id);
             },
             child: Text('Edit Product'),
           ),
           MaterialButton(
-            color: MyColors.myWhite,
+            color: Colors.white60,
             onPressed: () {
               Navigator.pushNamed(context, OrderProduct.id);
             },

@@ -31,165 +31,139 @@ class _ProductInfoState extends State<ProductInfo> {
         builder: (context, state) {
           var cubit = BuyCubit.get(context);
           return Scaffold(
+            backgroundColor: Colors.white,
             key: scffoldKey,
-            body: Stack(
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              leading: IconButton(
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                },
+                icon: Icon(Icons.keyboard_arrow_left_outlined,color: Colors.blue,),
+              ),
+              title: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.shopping_cart,size: 30,color: Colors.blue,),
+                  Text('Shopping',style: TextStyle(color: Colors.blue),)
+                ],
+              ),
+
+            ),
+            body: Column(
               children: [
                 Container(
-                    height: MediaQuery
-                        .of(context)
-                        .size
-                        .height,
+                  height: MediaQuery
+                      .of(context)
+                      .size.height * .5,
                     width: MediaQuery
                         .of(context)
                         .size
                         .width,
                     child: Image(image: AssetImage(product!.pLocation),
                       fit: BoxFit.fill,)),
-                Material(
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 50, 20, 0),
-                      child: Container(
-                        height: MediaQuery
-                            .of(context)
-                            .size
-                            .height * .001,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                Container(
+                  color: Colors.white,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
+                  height: MediaQuery
+                      .of(context)
+                      .size
+                      .height * .33,
+
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(product.pName, style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold
+                        ),),
+                        SizedBox(height: 20,),
+                        Text(product.pDescription, style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey[600]
+                        ),),
+                        SizedBox(height: 20,),
+                        Text('\$ ${product.pPrice}', style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold
+                        ),),
+                        SizedBox(height: 60,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(context, Home_Screen.id);
-                                },
-                                child: Icon(Icons.arrow_back_ios)),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, CartScreen.id);
-                              },
-                              child: Icon(
-                                Icons.shopping_cart,
+                            ClipOval(
+                              child: Material(
+                                color: Colors.blue[200],
+                                child: GestureDetector(
+                                  onTap: add,
+                                  child: SizedBox(
+                                    child: Icon(Icons.add,size: 18,),
+                                    height: 25,
+                                    width: 25,),
+
+                                ),
                               ),
-                            )
+                            ),
+                            SizedBox(width: 7,),
+                            Text(_quantity.toString(),
+                              style: TextStyle(fontSize: 20),),
+                            SizedBox(width: 7,),
+                            ClipOval(
+                              child: Material(
+                                color: Colors.blue[200],
+
+                                child: GestureDetector(
+                                  onTap: remove,
+                                  child: SizedBox(
+                                    child: Icon(Icons.remove,size: 18,),
+                                    height: 25,
+                                    width: 25,),
+
+                                ),
+                              ),
+                            ),
+
                           ],
                         ),
-                      ),
-                    )),
-                Positioned(
-                  bottom: 0,
-                  child: Column(
-                    children: [
-                      Opacity(
-                        opacity: .5,
-                        child: Container(
-                          color: Colors.white,
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width,
-                          height: MediaQuery
-                              .of(context)
-                              .size
-                              .height * .3,
-
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(product.pName, style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold
-                                ),),
-                                SizedBox(height: 10,),
-                                Text(product.pDescription, style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400
-                                ),),
-                                SizedBox(height: 10,),
-                                Text('\$ ${product.pPrice}', style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold
-                                ),),
-                                SizedBox(height: 10,),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    ClipOval(
-                                      child: Material(
-                                        color: MyColors.myYellow,
-
-                                        child: GestureDetector(
-                                          onTap: add,
-                                          child: SizedBox(
-                                            child: Icon(Icons.add),
-                                            height: 32,
-                                            width: 32,),
-
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(width: 7,),
-                                    Text(_quantity.toString(),
-                                      style: TextStyle(fontSize: 45),),
-                                    SizedBox(width: 7,),
-                                    ClipOval(
-                                      child: Material(
-                                        color: MyColors.myYellow,
-
-                                        child: GestureDetector(
-                                          onTap: remove,
-                                          child: SizedBox(
-                                            child: Icon(Icons.remove),
-                                            height: 32,
-                                            width: 32,),
-
-                                        ),
-                                      ),
-                                    ),
-
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      ButtonTheme(
-                        height: MediaQuery
-                            .of(context)
-                            .size
-                            .height * .08,
-                        minWidth: MediaQuery
-                            .of(context)
-                            .size
-                            .width,
-                        child: MaterialButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)
-                          ),
-                          color: MyColors.myYellow,
-                          onPressed: () {
-                            addToCart(context, product);
-                            scffoldKey.currentState!.showBottomSheet((
-                                context) =>
-                                Container(
-                                    width: MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width,
-                                    height: 20,
-                                    child: Center(child: Text('Add Product'))));
-                          },
-                          child: Text(
-                            'Add to Card'.toUpperCase(), style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15
-                          ),),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                )
-
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: MaterialButton(
+                      minWidth: MediaQuery.of(context).size.width,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)
+                    ),
+                    color: Colors.blue[300],
+                    onPressed: () {
+                      addToCart(context, product);
+                      scffoldKey.currentState!.showBottomSheet((
+                          context) =>
+                          Container(
+                              width: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width,
+                              height: 20,
+                              child: Center(child: Text('Add Product'))));
+                    },
+                    child: Text(
+                      'Add to Card'.toUpperCase(), style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15
+                    ),),
+                  ),
+                ),
               ],
             ),
           );

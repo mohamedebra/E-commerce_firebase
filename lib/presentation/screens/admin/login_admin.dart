@@ -3,9 +3,9 @@ import 'package:api/constants/colors.dart';
 import 'package:api/constants/string.dart';
 import 'package:api/data/repository/chercter_repostiory.dart';
 import 'package:api/presentation/screens/admin/adminHome.dart';
-import 'package:api/presentation/screens/admin/login_admin.dart';
 import 'package:api/presentation/screens/user/home.dart';
 import 'package:api/presentation/screens/user/home_screen.dart';
+import 'package:api/presentation/screens/user/loginScreen.dart';
 import 'package:api/presentation/screens/user/sign_up_screen.dart';
 import 'package:api/presentation/wedgit/constants_wedgit.dart';
 import 'package:flutter/material.dart';
@@ -16,16 +16,16 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginScreen extends StatefulWidget {
-  static String id = "LoginScreen";
+class Login_Admin extends StatefulWidget {
+  static String id = "Login_Admin";
 
-   LoginScreen({Key? key}) : super(key: key);
+  Login_Admin({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<Login_Admin> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<Login_Admin> {
   final GlobalKey<FormState> _globallKey = GlobalKey<FormState>();
 
   final _email = TextEditingController();
@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: BlocConsumer<BuyCubit,BuyState>(
         listener: ( context,  state) {
           if(state is BuyScsussSginIn){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> AdminHome()));
           }
           if(state is BuyErrorSginIn){
             scffoldKey.currentState!.showBottomSheet((context) => Padding(
@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Text((state).error.toString()),
               ),
             ));
-        }} ,
+          }} ,
         builder: ( context, state)  {
           var cubit = BuyCubit.get(context);
           ModelHud modelHud = ModelHud();
@@ -89,6 +89,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                       ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25,bottom: 10),
+                      child: Text('Welcome My Admin',style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20
+                      ),),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -193,9 +200,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         onPressed: (){
                           if(keepMeLoggedIn == true)
-                            {
-                              keepUserLogin();
-                            }
+                          {
+                            keepUserLogin();
+                          }
                           if(_globallKey.currentState!.validate()){
                             try{
                               cubit.signIn(email: _email.text, password: _password.text);
@@ -239,7 +246,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             onTap: () {
                               Provider.of<AdminMode>(context, listen: false)
                                   .changeIsAdmin(true);
-                              Navigator.pushNamed(context, Login_Admin.id);
+
                             },
                             child: Text(
                               'I\'m an admin',
@@ -256,6 +263,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             onTap: () {
                               Provider.of<AdminMode>(context, listen: false)
                                   .changeIsAdmin(false);
+                              Navigator.pushNamed(context, LoginScreen.id);
                             },
                             child: Text(
                               'I\'m a user',

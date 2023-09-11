@@ -5,6 +5,7 @@ import 'package:api/data/repository/chercter_repostiory.dart';
 import 'package:api/presentation/screens/admin/addProducts.dart';
 import 'package:api/presentation/screens/admin/adminHome.dart';
 import 'package:api/presentation/screens/admin/editProduct.dart';
+import 'package:api/presentation/screens/admin/login_admin.dart';
 import 'package:api/presentation/screens/admin/manageProduct.dart';
 import 'package:api/presentation/screens/admin/orderDetails.dart';
 import 'package:api/presentation/screens/admin/orderProduct.dart';
@@ -86,6 +87,7 @@ class MyApp extends StatelessWidget {
                 CartScreen.id: (context) => CartScreen(),
                 OrderProduct.id: (context) => OrderProduct(),
                 OrderDetails.id: (context) => OrderDetails(),
+                Login_Admin.id: (context) => Login_Admin(),
               },
             ),
           ),

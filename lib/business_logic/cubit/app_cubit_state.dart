@@ -33,3 +33,5 @@ class ChangeBottonNav extends BuyState {}
 class ChangeCheckbox extends BuyState {}
 class DeleteProductItems extends BuyState {}
 class EditMenuItems extends BuyState {}
+class AppImageSucsessState extends BuyState {}
+class AppImageErorrState extends BuyState {}

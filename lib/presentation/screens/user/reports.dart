@@ -15,7 +15,6 @@ class Reports extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Product> products = Provider.of<CartItem>(context).products;
-    List<Order> orders = [];
     getTotallPrice(List<Product> products) {
       var price = 0;
       for (var product in products) {
@@ -37,25 +36,33 @@ class Reports extends StatelessWidget {
             appBar: AppBar(
               backgroundColor: Colors.white,
               elevation: 0,
-              title: Text('Reports',style: TextStyle(
-                  color: Colors.black
-              ),),
-              leading: InkWell(
-                onTap: (){
-                  Navigator.pushNamed(context, Home_Screen.id);
-                },
-                child: Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.black,
-                ),
+              title: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.shopping_cart,size: 30,color: Colors.blue,),
+                  Text('Shopping',style: TextStyle(color: Colors.blue),)
+                ],
               ),
+
             ),
 
             body: StreamBuilder(
               stream: cubit.loadOrders(),
               builder: (context,snapshot){
-                if(!snapshot.hasData){
-                  return Text('There is no orders');
+                if(!snapshot.hasError){
+                  return Center(child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image(image: AssetImage('images/icons8-buy-80.png'),color: Colors.grey,),
+                      Text('There is no Orders',style: TextStyle(
+                          fontFamily: 'Pacifico',
+                          fontSize: 25,
+                        color: Colors.grey
+                      ),),
+                    ],
+                  ));
                 }
                 else {
                   List<Order> orders = [];
@@ -77,7 +84,7 @@ class Reports extends StatelessWidget {
                                   .of(context)
                                   .size
                                   .height * .15,
-                              color: MyColors.myWhite,
+                              color: Colors.blue[200],
                               child: Container(
                                 margin: EdgeInsets.all(7),
 

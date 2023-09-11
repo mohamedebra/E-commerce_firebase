@@ -37,17 +37,17 @@ class AddProduct extends StatelessWidget {
                       decoration: InputDecoration(
                           hintText: 'Product Name',
                           filled: true,
-                          fillColor: MyColors.myWhite,
+                          fillColor: Colors.blue[200],
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                               borderSide: BorderSide(
-                                  color: MyColors.myWhite
+                                  color: Colors.white60
                               )
                           ),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                               borderSide: BorderSide(
-                                  color: MyColors.myWhite
+                                  color:Colors.white60
                               )
                           )
                       ),
@@ -61,17 +61,17 @@ class AddProduct extends StatelessWidget {
                       decoration: InputDecoration(
                           hintText: 'Product Price',
                           filled: true,
-                          fillColor: MyColors.myWhite,
+                          fillColor: Colors.blue[200],
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                               borderSide: BorderSide(
-                                  color: MyColors.myWhite
+                                  color: Colors.white60
                               )
                           ),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                               borderSide: BorderSide(
-                                  color: MyColors.myWhite
+                                  color: Colors.white60
                               )
                           )
                       ),
@@ -86,7 +86,7 @@ class AddProduct extends StatelessWidget {
                       decoration: InputDecoration(
                           hintText: 'Product Description',
                           filled: true,
-                          fillColor: MyColors.myWhite,
+                          fillColor: Colors.blue[200],
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                               borderSide: BorderSide(
@@ -111,7 +111,7 @@ class AddProduct extends StatelessWidget {
                       decoration: InputDecoration(
                           hintText: 'Product category',
                           filled: true,
-                          fillColor: MyColors.myWhite,
+                          fillColor:Colors.blue[200],
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                               borderSide: BorderSide(
@@ -136,7 +136,7 @@ class AddProduct extends StatelessWidget {
                       decoration: InputDecoration(
                           hintText: 'Product Location',
                           filled: true,
-                          fillColor: MyColors.myWhite,
+                          fillColor:Colors.blue[200],
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                               borderSide: BorderSide(

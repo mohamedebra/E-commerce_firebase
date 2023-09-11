@@ -28,25 +28,32 @@ class CartScreen extends StatelessWidget {
         listener: (context,state) {},
         builder: (context,state){
           return  Scaffold(
+            backgroundColor: Colors.white,
             key: scffoldKey,
             resizeToAvoidBottomInset: false,
             appBar: AppBar(
               backgroundColor: Colors.white,
               elevation: 0,
-              title: Text('The Cart',style: TextStyle(
-                color: Colors.black
-              ),),
+              title: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.shopping_cart,size: 30,color: Colors.blue,),
+                  Text('Shopping',style: TextStyle(color: Colors.blue),)
+                ],
+              ),
               leading: InkWell(
                 onTap: (){
                   Navigator.pushNamed(context, Home_Screen.id);
                 },
                 child: Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.black,
+                  Icons.keyboard_arrow_left,
+                  color: Colors.blue,
                 ),
               ),
             ),
             body: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   child: ListView.builder(itemBuilder: (context, index) {
@@ -62,7 +69,7 @@ class CartScreen extends StatelessWidget {
                               .of(context)
                               .size
                               .height * .15,
-                          color: MyColors.myWhite,
+                          color: Colors.blue[100],
                           child: Row(
                             children: [
                               CircleAvatar(
@@ -80,27 +87,32 @@ class CartScreen extends StatelessWidget {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                          left: 20),
+                                          left: 35),
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment
                                             .center,
                                         children: [
                                           Text(products[index].pName,
-                                            style: TextStyle(fontSize: 18,
+                                            style: TextStyle(fontSize: 20,
                                                 fontWeight: FontWeight
                                                     .bold),),
-                                          SizedBox(height: 10,),
+                                          SizedBox(height: 15,),
                                           Text('\$ ${products[index].pPrice}',
                                             style: TextStyle(
                                                 fontWeight: FontWeight
-                                                    .bold),),
+                                                    .bold,
+                                              fontSize: 15,
+                                            ),),
                                         ],
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.only(right: 25),
                                       child: Text(products[index].pQuantity
-                                          .toString()),
+                                          .toString(),style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold
+                                      ),),
                                     ),
                                   ],
                                 ),
@@ -118,7 +130,7 @@ class CartScreen extends StatelessWidget {
                   onPressed: (){
                     showCustomDialog(products,context);
                   },
-                color: MyColors.myYellow,
+                color: Colors.blue[300],
                 child: Text('order'.toUpperCase()),)
               ],
             ),

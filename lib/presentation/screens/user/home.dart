@@ -29,9 +29,10 @@ class _HomePageState extends State<HomePage> {
         builder: (context, state) {
           var cubit = BuyCubit.get(context);
           return Scaffold(
+
             body: cubit.screens[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
-                selectedItemColor: MyColors.myYellow,
+                selectedItemColor: Colors.blue,
                 type: BottomNavigationBarType.fixed,
                 onTap: (value) {
                   cubit.changeBottonNav(value);
@@ -51,81 +52,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  final _store = Store();
-  // Widget jacketView() {
-  //   return StreamBuilder<QuerySnapshot>(
-  //     stream: _store.loadProducts(),
-  //     builder: (context, snapshot) {
-  //       if (snapshot.hasData) {
-  //         List<Product> products = [];
-  //         for (var doc in snapshot.data!.docs) {
-  //           var data = doc.data;
-  //           products.add(Product(
-  //               pid: doc.id,
-  //               pPrice: data[kProductPrice],
-  //               pName: data[kProductName],
-  //               pDescription: data[kProductDescription],
-  //               pLocation: data[kProductLocation],
-  //               pCategory: data[kProductCategory]));
-  //         }
-  //         products = [...products];
-  //         products.clear();
-  //         products = getProductByCategory(kJackets, products);
-  //         return GridView.builder(
-  //           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-  //             crossAxisCount: 2,
-  //             childAspectRatio: .8,
-  //           ),
-  //           itemBuilder: (context, index) => Padding(
-  //             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-  //             child: GestureDetector(
-  //               onTap: () {
-  //                 Navigator.pushNamed(context, ProductInfo.id,
-  //                     arguments: products[index]);
-  //               },
-  //               child: Stack(
-  //                 children: <Widget>[
-  //                   Positioned.fill(
-  //                     child: Image(
-  //                       fit: BoxFit.fill,
-  //                       image: AssetImage(products[index].pLocation),
-  //                     ),
-  //                   ),
-  //                   Positioned(
-  //                     bottom: 0,
-  //                     child: Opacity(
-  //                       opacity: .6,
-  //                       child: Container(
-  //                         width: MediaQuery.of(context).size.width,
-  //                         height: 60,
-  //                         color: Colors.white,
-  //                         child: Padding(
-  //                           padding: EdgeInsets.symmetric(
-  //                               horizontal: 10, vertical: 5),
-  //                           child: Column(
-  //                             crossAxisAlignment: CrossAxisAlignment.start,
-  //                             children: <Widget>[
-  //                               Text(
-  //                                 products[index].pName,
-  //                                 style: TextStyle(fontWeight: FontWeight.bold),
-  //                               ),
-  //                               Text('\$ ${products[index].pPrice}')
-  //                             ],
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ),
-  //                   )
-  //                 ],
-  //               ),
-  //             ),
-  //           ),
-  //           itemCount: products.length,
-  //         );
-  //       } else {
-  //         return Center(child: Text('Loading...'));
-  //       }
-  //     },
-  //   );
-  // }
 }

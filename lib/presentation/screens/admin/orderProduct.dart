@@ -36,14 +36,14 @@ class OrderProduct extends StatelessWidget {
                   }
                   return ListView.builder(itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.all(10.0),
                       child: GestureDetector(
                         onTap: (){
                           Navigator.pushNamed(context, OrderDetails.id,arguments: orders[index].id);
                         },
                         child: Container(
                           height: MediaQuery.of(context).size.height * .2,
-                            color: MyColors.myWhite,
+                            color: Colors.blue[100],
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Column(

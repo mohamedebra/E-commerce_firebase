@@ -1,5 +1,6 @@
 
 import 'package:api/business_logic/cubit/app_cubit_bloc.dart';
+import 'package:api/constants/colors.dart';
 import 'package:api/constants/string.dart';
 import 'package:api/data/models/character.dart';
 import 'package:api/presentation/screens/user/productInfo.dart';
@@ -90,56 +91,83 @@ Widget jacketView() {
             _products = [...products];
             products.clear();
             products = getProductByCategory(kJackets, _products);
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: .8,
-              ),
-              itemBuilder: (context, index) => Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, ProductInfo.id,
-                        arguments: products[index]);
-                  },
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned.fill(
-                        child: Image(
-                          fit: BoxFit.fill,
-                          image: AssetImage(products[index].pLocation),
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        child: Opacity(
-                          opacity: .6,
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 60,
-                            color: Colors.white,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    products[index].pName,
-                                    style: TextStyle(fontWeight: FontWeight.bold),
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 30,top: 30,bottom: 10),
+                  child: Text('Best Selling',style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold
+                  ),),
+                ),
+                Expanded(
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: .7,
+                    ),
+                    itemBuilder: (context, index) => Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      child: Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, ProductInfo.id,
+                                  arguments: products[index]);
+                            },
+                            child: Column(
+                              children: <Widget>[
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 180,
+
+                                  child: Image(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage(products[index].pLocation),
                                   ),
-                                  Text('\$ ${products[index].pPrice}')
-                                ],
-                              ),
+                                ),
+                                Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 80,
+                                  color: Colors.white,
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 5),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text(
+                                          products[index].pName,
+                                          style: TextStyle(fontWeight: FontWeight.bold),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text('${products[index].pDescription}',style: TextStyle(
+                                            color: Colors.grey[500]
+                                        ),),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text('\$ ${products[index].pPrice}',style: TextStyle(
+                                          color: Colors.blue
+                                        ),)
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
                           ),
-                        ),
-                      )
-                    ],
+                        ],
+                      ),
+                    ),
+                    itemCount: products.length,
                   ),
-                ),
-              ),
-              itemCount: products.length,
+                )
+              ],
             );
           } else {
             return Center(child: Text('Loading...'));
@@ -172,56 +200,83 @@ trouserVeiw() {
             _products = [...products];
             products.clear();
             products = getProductByCategory(kTrousers, _products);
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: .8,
-              ),
-              itemBuilder: (context, index) => Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, ProductInfo.id,
-                        arguments: products[index]);
-                  },
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned.fill(
-                        child: Image(
-                          fit: BoxFit.fill,
-                          image: AssetImage(products[index].pLocation),
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        child: Opacity(
-                          opacity: .6,
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 60,
-                            color: Colors.white,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    products[index].pName,
-                                    style: TextStyle(fontWeight: FontWeight.bold),
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 30,top: 30,bottom: 10),
+                  child: Text('Best Selling',style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                  ),),
+                ),
+                Expanded(
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: .7,
+                    ),
+                    itemBuilder: (context, index) => Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      child: Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, ProductInfo.id,
+                                  arguments: products[index]);
+                            },
+                            child: Column(
+                              children: <Widget>[
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 180,
+
+                                  child: Image(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage(products[index].pLocation),
                                   ),
-                                  Text('\$ ${products[index].pPrice}')
-                                ],
-                              ),
+                                ),
+                                Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 80,
+                                  color: Colors.white,
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 5),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text(
+                                          products[index].pName,
+                                          style: TextStyle(fontWeight: FontWeight.bold),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text('${products[index].pDescription}',style: TextStyle(
+                                            color: Colors.grey[500]
+                                        ),),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text('\$ ${products[index].pPrice}',style: TextStyle(
+                                            color: Colors.blue
+                                        ),)
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
                           ),
-                        ),
-                      )
-                    ],
+                        ],
+                      ),
+                    ),
+                    itemCount: products.length,
                   ),
-                ),
-              ),
-              itemCount: products.length,
+                )
+              ],
             );
           } else {
             return Center(child: Text('Loading...'));
@@ -254,56 +309,83 @@ tShirtVeiw() {
             _products = [...products];
             products.clear();
             products = getProductByCategory(kTshirts, _products);
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: .8,
-              ),
-              itemBuilder: (context, index) => Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, ProductInfo.id,
-                        arguments: products[index]);
-                  },
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned.fill(
-                        child: Image(
-                          fit: BoxFit.fill,
-                          image: AssetImage(products[index].pLocation),
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        child: Opacity(
-                          opacity: .6,
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 60,
-                            color: Colors.white,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    products[index].pName,
-                                    style: TextStyle(fontWeight: FontWeight.bold),
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 30,top: 30,bottom: 10),
+                  child: Text('Best Selling',style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                  ),),
+                ),
+                Expanded(
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: .7,
+                    ),
+                    itemBuilder: (context, index) => Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      child: Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, ProductInfo.id,
+                                  arguments: products[index]);
+                            },
+                            child: Column(
+                              children: <Widget>[
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 180,
+
+                                  child: Image(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage(products[index].pLocation),
                                   ),
-                                  Text('\$ ${products[index].pPrice}')
-                                ],
-                              ),
+                                ),
+                                Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 80,
+                                  color: Colors.white,
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 5),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text(
+                                          products[index].pName,
+                                          style: TextStyle(fontWeight: FontWeight.bold),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text('${products[index].pDescription}',style: TextStyle(
+                                            color: Colors.grey[500]
+                                        ),),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text('\$ ${products[index].pPrice}',style: TextStyle(
+                                            color: Colors.blue
+                                        ),)
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
                           ),
-                        ),
-                      )
-                    ],
+                        ],
+                      ),
+                    ),
+                    itemCount: products.length,
                   ),
-                ),
-              ),
-              itemCount: products.length,
+                )
+              ],
             );
           } else {
             return Center(child: Text('Loading...'));
@@ -336,56 +418,83 @@ shoesVeiw() {
             _products = [...products];
             products.clear();
             products = getProductByCategory(kShoes, _products);
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: .8,
-              ),
-              itemBuilder: (context, index) => Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, ProductInfo.id,
-                        arguments: products[index]);
-                  },
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned.fill(
-                        child: Image(
-                          fit: BoxFit.fill,
-                          image: AssetImage(products[index].pLocation),
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        child: Opacity(
-                          opacity: .6,
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 60,
-                            color: Colors.white,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    products[index].pName,
-                                    style: TextStyle(fontWeight: FontWeight.bold),
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 30,top: 30,bottom: 10),
+                  child: Text('Best Selling',style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                  ),),
+                ),
+                Expanded(
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: .7,
+                    ),
+                    itemBuilder: (context, index) => Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      child: Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, ProductInfo.id,
+                                  arguments: products[index]);
+                            },
+                            child: Column(
+                              children: <Widget>[
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 180,
+
+                                  child: Image(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage(products[index].pLocation),
                                   ),
-                                  Text('\$ ${products[index].pPrice}')
-                                ],
-                              ),
+                                ),
+                                Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 80,
+                                  color: Colors.white,
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 5),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text(
+                                          products[index].pName,
+                                          style: TextStyle(fontWeight: FontWeight.bold),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text('${products[index].pDescription}',style: TextStyle(
+                                            color: Colors.grey[500]
+                                        ),),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text('\$ ${products[index].pPrice}',style: TextStyle(
+                                            color: Colors.blue
+                                        ),)
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
                           ),
-                        ),
-                      )
-                    ],
+                        ],
+                      ),
+                    ),
+                    itemCount: products.length,
                   ),
-                ),
-              ),
-              itemCount: products.length,
+                )
+              ],
             );
           } else {
             return Center(child: Text('Loading...'));

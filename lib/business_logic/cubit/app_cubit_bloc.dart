@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:api/constants/string.dart';
 import 'package:api/data/models/character.dart';
 import 'package:api/data/repository/chercter_repostiory.dart';
@@ -9,13 +10,14 @@ import 'package:api/presentation/screens/user/home.dart';
 import 'package:api/presentation/screens/user/home_screen.dart';
 import 'package:api/presentation/screens/user/productInfo.dart';
 import 'package:api/presentation/screens/user/reports.dart';
-import 'package:api/presentation/screens/user/signOut.dart';
+import 'package:api/presentation/screens/user/Account.dart';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +34,8 @@ class BuyCubit extends Cubit<BuyState> {
   List<Product> products = [];
   int currentIndex = 0;
   bool keepMeLoggedIn = false;
-
+  File? proFileimage;
+  var picker = ImagePicker();
 
   List screens = [
     Home_Screen(),
@@ -210,6 +213,21 @@ class BuyCubit extends Cubit<BuyState> {
 
   Stream<QuerySnapshot> loadOrders(){
     return _firestore.collection(kOrders).snapshots();
+  }//.getImage(source: ImageSource.gallery)
+  Future getImage() async{
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    if(pickedFile != null)
+    {
+
+      proFileimage = File(pickedFile.path);
+      print(pickedFile.path);
+      emit(AppImageSucsessState());
+    }else
+    {
+      print('No image selected');
+      emit(AppImageErorrState());
+
+    }
   }
 
 }
